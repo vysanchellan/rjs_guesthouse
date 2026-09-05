@@ -1,0 +1,206 @@
+@import "tailwindcss";
+
+/*
+  Two colours do the work: a deep night-teal ground and brass.
+  Sand is the paper they sit on. Brass is rationed — it appears only on a lit
+  night and on the primary action, so that when it shows up it means something.
+*/
+:root {
+  --ink-900: #0a1618;
+  --ink-800: #0e1e21;
+  --ink-700: #142a2d;
+  --ink-600: #1c3639;
+  --rule: rgba(217, 207, 189, 0.14);
+  --rule-strong: rgba(217, 207, 189, 0.28);
+
+  --sand-100: #f4ecdd;
+  --sand-300: #dcd2c0;
+  --sand-500: #ab9f8b;
+
+  --brass: #d8a459;
+  --brass-deep: #9c6f2e;
+
+  --measure: 62ch;
+}
+
+@theme inline {
+  --color-ink-900: var(--ink-900);
+  --color-ink-800: var(--ink-800);
+  --color-ink-700: var(--ink-700);
+  --color-ink-600: var(--ink-600);
+  --color-sand-100: var(--sand-100);
+  --color-sand-300: var(--sand-300);
+  --color-sand-500: var(--sand-500);
+  --color-brass: var(--brass);
+  --color-brass-deep: var(--brass-deep);
+  --font-display: var(--font-fraunces), "Iowan Old Style", Georgia, serif;
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background-color: var(--ink-900);
+  color: var(--sand-300);
+  font-family: var(--font-inter), system-ui, sans-serif;
+  font-size: 1rem;
+  line-height: 1.7;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background-color: var(--brass);
+  color: var(--ink-900);
+}
+
+/* --- Type -------------------------------------------------------------- */
+
+.display-xl,
+.display-l,
+.display-m {
+  font-family: var(--font-fraunces), "Iowan Old Style", Georgia, serif;
+  font-weight: 400;
+  color: var(--sand-100);
+  text-wrap: balance;
+}
+
+.display-xl {
+  font-size: clamp(3rem, 1.55rem + 6.2vw, 7rem);
+  line-height: 0.94;
+  letter-spacing: -0.035em;
+  font-variation-settings: "SOFT" 28, "WONK" 1, "opsz" 144;
+}
+
+.display-l {
+  font-size: clamp(2.125rem, 1.35rem + 3.3vw, 4.25rem);
+  line-height: 1.02;
+  letter-spacing: -0.028em;
+  font-variation-settings: "SOFT" 22, "WONK" 1, "opsz" 96;
+}
+
+.display-m {
+  font-size: clamp(1.375rem, 1.15rem + 0.95vw, 1.9rem);
+  line-height: 1.22;
+  letter-spacing: -0.017em;
+  font-variation-settings: "SOFT" 14, "WONK" 0, "opsz" 36;
+}
+
+.lede {
+  font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.25rem);
+  line-height: 1.62;
+  color: var(--sand-300);
+  max-width: var(--measure);
+}
+
+.prose-body {
+  font-size: 1.0625rem;
+  line-height: 1.72;
+  color: var(--sand-300);
+  max-width: var(--measure);
+}
+
+/* Section index — the small numbered label that opens each section. */
+.index {
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--sand-500);
+  font-variant-numeric: tabular-nums;
+}
+
+.index b {
+  color: var(--brass);
+  font-weight: 500;
+}
+
+.micro {
+  font-size: 0.75rem;
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+  color: var(--sand-500);
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+
+/* --- Focus ------------------------------------------------------------- */
+
+:where(a, button, input, [tabindex]):focus-visible {
+  outline: 2px solid var(--brass);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* --- Scroll reveal ------------------------------------------------------
+   Cheap: opacity + transform only, driven by IntersectionObserver adding
+   [data-shown]. No library, nothing per-frame. */
+
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 900ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 900ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+[data-reveal][data-shown] {
+  opacity: 1;
+  transform: none;
+}
+
+/* --- Layout ------------------------------------------------------------ */
+
+.shell {
+  width: 100%;
+  max-width: 78rem;
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+}
+
+@media (min-width: 1024px) {
+  .shell {
+    padding-inline: 2.5rem;
+  }
+}
+
+.hairline {
+  border: 0;
+  border-top: 1px solid var(--rule);
+  margin: 0;
+}
+
+/* --- Reduced motion ----------------------------------------------------
+   Content must never depend on motion to become reachable, so reveals are
+   forced to their end state rather than disabled. */
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
