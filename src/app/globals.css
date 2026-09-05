@@ -76,7 +76,7 @@ body {
 }
 
 .display-xl {
-  font-size: clamp(3rem, 1.55rem + 6.2vw, 7rem);
+  font-size: clamp(2.85rem, 1.7rem + 5vw, 6.25rem);
   line-height: 0.94;
   letter-spacing: -0.035em;
   font-variation-settings: "SOFT" 28, "WONK" 1, "opsz" 144;

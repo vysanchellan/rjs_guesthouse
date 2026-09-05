@@ -13,7 +13,7 @@ const shellEdge =
  */
 export default function Hero() {
   return (
-    <section id="top" className="pt-28 lg:pt-36">
+    <section id="top" className="pt-28 lg:pt-32">
       {/* Watched by the nav to decide when to go solid. */}
       <div id="nav-sentinel" aria-hidden="true" className="h-px w-px" />
 
@@ -31,7 +31,7 @@ export default function Hero() {
         </h1>
       </div>
 
-      <div className="mt-12 grid items-stretch gap-10 lg:mt-16 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.02fr)] lg:gap-14">
+      <div className="mt-10 grid items-stretch gap-10 lg:mt-10 lg:grid-cols-[minmax(0,1.08fr)_minmax(0,1fr)] lg:gap-14">
         {/* Photograph — first on mobile so the place lands before the form. */}
         <div className="relative order-first h-[46svh] min-h-[280px] lg:order-last lg:h-auto lg:min-h-[34rem]">
           <Image
@@ -45,7 +45,7 @@ export default function Hero() {
         </div>
 
         <div className={`flex flex-col justify-between pb-20 lg:pb-28 ${shellEdge}`}>
-          <p className="lede max-w-[38ch]">
+          <p className="lede max-w-[44ch]">
             Fully furnished studio apartments in a quiet Durban suburb — your
             own entrance, your own kitchen, and the beachfront ten minutes down
             the road.
@@ -58,6 +58,9 @@ export default function Hero() {
               How long are you staying?
             </p>
             <StayPlanner />
+            {/* Marks where the planner ends, so the docked rail knows when it
+                has been scrolled past. */}
+            <div id="stay-end" aria-hidden="true" className="h-px w-px" />
           </div>
         </div>
       </div>

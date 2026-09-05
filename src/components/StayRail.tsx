@@ -16,22 +16,28 @@ export default function StayRail() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const planner = document.getElementById("stay");
+    const sentinel = document.getElementById("stay-end");
     const footer = document.getElementById("site-footer");
-    if (!planner) return;
+    if (!sentinel) return;
 
     let plannerGone = false;
     let atFooter = false;
     const sync = () => setVisible(plannerGone && !atFooter);
 
+    // Watching isIntersecting alone is not enough: jumping from the footer to
+    // the top of the page never crosses the intersecting range, so no callback
+    // fires and the rail stays stuck open. Extending the root far past the
+    // bottom of the viewport makes the sentinel intersecting *everywhere*
+    // below the fold, so the only transition is at the viewport top — which is
+    // exactly the line we care about, and it always fires.
     const plannerObserver = new IntersectionObserver(
       ([entry]) => {
-        plannerGone = !entry.isIntersecting && entry.boundingClientRect.top < 0;
+        plannerGone = !entry.isIntersecting;
         sync();
       },
-      { threshold: 0 }
+      { rootMargin: "0px 0px 100000px 0px", threshold: 0 }
     );
-    plannerObserver.observe(planner);
+    plannerObserver.observe(sentinel);
 
     const footerObserver = footer
       ? new IntersectionObserver(
