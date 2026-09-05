@@ -40,28 +40,29 @@ function Svg({
 
 export const Gate = (p: IconProps) => (
   <Svg {...p}>
-    <path d="M3 19.5h18M4.5 19.5V8.5l7-3v14M11.5 19.5V8l8 2.5v9" />
-    <path d="M7 11.5v4M14.5 12.5v4M17 13.2v3.8" />
+    <path d="M2.5 20.6h19" />
+    <path d="M4.2 20.6V8.4M19.8 20.6V8.4" />
+    <path d="M5.9 9.9h12.2v10.7H5.9z" />
+    <path d="M12 9.9v10.7" />
+    <path d="m5.9 20.6 6.1-10.7 6.1 10.7" />
   </Svg>
 );
 
 export const Camera = (p: IconProps) => (
   <Svg {...p}>
-    <path d="M3.5 4.5v6" />
-    <path d="M3.5 6h8.2a2 2 0 0 1 2 2v1.6a2 2 0 0 1-2 2H3.5" />
-    <path d="M9 11.6v2.2a3 3 0 0 1-3 3H4.2" />
-    <circle cx="16.8" cy="8.8" r="1.4" />
-    <path d="M18.2 8.8h2.3" />
+    <path d="M3 4v7.4" />
+    <path d="M3 5.8h10.2a2 2 0 0 1 2 2v1.6a2 2 0 0 1-2 2H3z" />
+    <path d="M15.2 7.6 20.6 5.4v6.4l-5.4-2.2z" />
+    <path d="M8.8 11.4v2.2a3.2 3.2 0 0 1-3.2 3.2H3.4" />
   </Svg>
 );
 
 export const Car = (p: IconProps) => (
   <Svg {...p}>
-    <path d="M3.5 15.5v-2.7l1.8-4.1a2 2 0 0 1 1.8-1.2h9.8a2 2 0 0 1 1.8 1.2l1.8 4.1v2.7" />
-    <path d="M3.5 15.5h17" />
-    <path d="M5 15.5v1.8M19 15.5v1.8" />
-    <path d="M5.6 12.4h12.8" />
-    <path d="M7 20h10" />
+    <path d="M3 14.6v-2a2 2 0 0 1 1.35-1.9l2.05-.7 1.9-2.5a2 2 0 0 1 1.6-.8h4.2a2 2 0 0 1 1.6.8l1.9 2.5 2.05.7A2 2 0 0 1 21 12.6v2z" />
+    <path d="M6.4 10h11.2" />
+    <circle cx="7.2" cy="15.2" r="1.9" />
+    <circle cx="16.8" cy="15.2" r="1.9" />
   </Svg>
 );
 

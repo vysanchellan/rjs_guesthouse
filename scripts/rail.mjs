@@ -5,7 +5,7 @@ const browser = await puppeteer.launch({
 });
 const page = await browser.newPage();
 await page.setViewport({ width: 390, height: 844, isMobile: true });
-await page.goto("http://localhost:4420", { waitUntil: "networkidle0" });
+await page.goto("http://localhost:4474", { waitUntil: "networkidle0" });
 await new Promise((r) => setTimeout(r, 800));
 
 const railState = () =>
